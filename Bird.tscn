@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://bird_3_sparrow.png" type="Texture" id=1]
 [ext_resource path="res://Bird.gd" type="Script" id=2]
+[ext_resource path="res://Bird_flap.wav" type="AudioStream" id=3]
+[ext_resource path="res://Bird_blop.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.34616
@@ -22,6 +24,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 1 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wing_flap:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "fly_down"
@@ -39,6 +53,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 8, 7, 6, 7 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wing_flap:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "fly_up"
@@ -55,6 +81,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 4, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Wing_flap:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -91,6 +129,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 12, 13, 14, 13 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Bird_blop:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Bird" type="Area2D" groups=[
 "Birds",
@@ -107,7 +157,7 @@ position = Vector2( -9.53674e-07, -9.6 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 3
-frame = 7
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fly = SubResource( 2 )
@@ -118,5 +168,13 @@ anims/walk = SubResource( 6 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Wing_flap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -13.149
+
+[node name="Bird_blop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -8.368
 [connection signal="area_entered" from="." to="." method="_on_Bird_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

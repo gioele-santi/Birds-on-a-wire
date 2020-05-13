@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bird_blop.wav-0550e0fc1c3f986d74aaaff98d59af57.sample"
+
+[deps]
+
+source_file="res://Bird_blop.wav"
+dest_files=[ "res://.import/Bird_blop.wav-0550e0fc1c3f986d74aaaff98d59af57.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

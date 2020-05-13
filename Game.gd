@@ -2,6 +2,7 @@ extends Node
 
 onready var spawn_timer := $Spawn_timer
 export (PackedScene) var Bird_scene
+export (int) var level := 1
 
 func _ready() -> void:
 	randomize()
@@ -26,4 +27,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_Spawn_timer_timeout() -> void:
 	spawn_bird()
+	if $Birds.get_child_count() >= level:
+		return
+	
+	spawn_timer.wait_time = rand_range(0.2, 1.5)
+	spawn_timer.start()
+	
 	#check bird count, level and and see if necessary to restart timer
+
+
+func gameover() -> void:
+	#present elapsed time, removed birds and restart option
+	pass
