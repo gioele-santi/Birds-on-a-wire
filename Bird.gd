@@ -3,6 +3,7 @@ extends Area2D
 enum State {IDLE, FLY, WALK, DIE}
 
 var state = State.FLY
+var animation := "" setget set_animation
 
 var screen_size := Vector2.ZERO
 var wire_y_1 := 410.0
@@ -10,7 +11,7 @@ var wire_y_2 := 0.0
 
 var trajectory_points := []
 
-onready var animation := $AnimationPlayer
+onready var animation_player := $AnimationPlayer
 onready var timer := $Timer
 
 var velocity := Vector2.ZERO setget set_velocity
@@ -56,33 +57,33 @@ func change_state(new_state) -> void:
 	match state:
 		State.IDLE:
 			set_process(false)
-			animation.play("idle")
+			self.animation = "idle"
 			timer.wait_time = rand_range(5.0, 8.0)
 			timer.start()
 		State.FLY:
 			pick_trajectory()
+			self.animation = "fly"
 			set_process(true)
 		State.WALK:
+			self.animation = "walk"
 			set_process(true)
-	
 
 func set_velocity(value: Vector2) -> void:
 	velocity = value
 	match(state):
 		State.FLY:
-			animation.play("fly")
 			$Sprite.flip_h = true
 			if cos(velocity.angle()) < -0.2:
 				$Sprite.flip_h = false
-				animation.play("fly")
+				self.animation = "fly"
 			elif sin(velocity.angle()) > 0.8:
-				animation.play("fly_down")
+				self.animation = "fly_down"
 			elif sin(velocity.angle()) < -0.8:
-				animation.play("fly_up")
+				self.animation = "fly_up"
 			else:
-				animation.play("fly")
+				self.animation = "fly"
 		State.WALK:
-			animation.play("walk")
+			animation_player.play("walk")
 			$Sprite.flip_h = true
 			if cos(velocity.angle()) < -0.2:
 				$Sprite.flip_h = false
@@ -110,10 +111,24 @@ func _on_Timer_timeout() -> void:
 		return
 	#walk on wire
 	var x = rand_range(0.0, 1024.0)
+	#random fly away
 	if x < 120.0 or x > 912.0:
 		change_state(State.FLY)
 		return
 	trajectory_points.append(Vector2(x, position.y))
 	change_state(State.WALK)
 
-	# or randomly fly away
+func set_animation(value: String) -> void:
+	if value == animation:
+		return
+	animation = value
+	animation_player.play(animation)
+
+func _on_Bird_area_entered(area: Area2D) -> void:
+	#manage collisions 
+		#-> other birds -> if flying pick another direction
+		# if walking -> pick point on other side (split timeout method from point pick) 
+		
+		#sparks -> die animation and send die signal to game
+	
+	pass # Replace with function body.
