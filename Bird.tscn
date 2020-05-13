@@ -92,7 +92,9 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 13 ]
 }
 
-[node name="Bird" type="Area2D"]
+[node name="Bird" type="Area2D" groups=[
+"Birds",
+]]
 scale = Vector2( 2.5, 2.5 )
 script = ExtResource( 2 )
 

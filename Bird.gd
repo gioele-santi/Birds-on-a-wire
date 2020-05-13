@@ -1,5 +1,10 @@
 extends Area2D
 
+class_name Bird
+signal Die
+signal Landed
+signal Fly_away
+
 enum State {IDLE, FLY, WALK, DIE}
 
 var state = State.FLY
@@ -28,7 +33,6 @@ func initialize(start_position:Vector2 = Vector2.ZERO) -> void:
 	position = start_position
 	
 	pick_trajectory()
-
 
 func _process(delta: float) -> void:
 	#Fly state
@@ -68,6 +72,49 @@ func change_state(new_state) -> void:
 			self.animation = "walk"
 			set_process(true)
 
+func pick_trajectory() -> void:
+	trajectory_points = []
+	var count = randi() % 3 + 2 # random number between 2 and 4
+	for i in count:
+		var found := false
+		var point:= Vector2.ZERO
+		while not found:
+			var distance = rand_range(200.0, 800.0)
+			var angle = randf()
+			point = Vector2(distance * cos(angle), distance * sin(angle)) 
+			if point.x > 0.0 and point.x < screen_size.x and point.y > 0.0 and point.y < wire_y_1:
+				found = true
+		
+		trajectory_points.append(point)
+	
+	var landing = Vector2(rand_range(120.0, 912.0), wire_y_1)
+	trajectory_points.append(landing)
+
+# Callbacks
+
+func _on_Timer_timeout() -> void:
+	if state != State.IDLE:
+		return
+	#walk on wire
+	var x = rand_range(0.0, 1024.0)
+	#random fly away
+	if x < 120.0 or x > 912.0:
+		change_state(State.FLY)
+		return
+	trajectory_points.append(Vector2(x, position.y))
+	change_state(State.WALK)
+
+func _on_Bird_area_entered(area: Area2D) -> void:
+	#manage collisions 
+		#-> other birds -> if flying pick another direction
+		# if walking -> pick point on other side (split timeout method from point pick) 
+		
+		#sparks -> die animation and send die signal to game
+	
+	pass # Replace with function body.
+
+# Setters
+
 func set_velocity(value: Vector2) -> void:
 	velocity = value
 	match(state):
@@ -88,47 +135,8 @@ func set_velocity(value: Vector2) -> void:
 			if cos(velocity.angle()) < -0.2:
 				$Sprite.flip_h = false
 
-func pick_trajectory() -> void:
-	trajectory_points = []
-	var count = randi() % 3 + 2 # random number between 2 and 4
-	for i in count:
-		var found := false
-		var point:= Vector2.ZERO
-		while not found:
-			var distance = rand_range(200.0, 800.0)
-			var angle = randf()
-			point = Vector2(distance * cos(angle), distance * sin(angle)) 
-			if point.x > 0.0 and point.x < screen_size.x and point.y > 0.0 and point.y < wire_y_1:
-				found = true
-		
-		trajectory_points.append(point)
-	
-	var landing = Vector2(rand_range(120.0, 912.0), wire_y_1)
-	trajectory_points.append(landing)
-
-func _on_Timer_timeout() -> void:
-	if state != State.IDLE:
-		return
-	#walk on wire
-	var x = rand_range(0.0, 1024.0)
-	#random fly away
-	if x < 120.0 or x > 912.0:
-		change_state(State.FLY)
-		return
-	trajectory_points.append(Vector2(x, position.y))
-	change_state(State.WALK)
-
 func set_animation(value: String) -> void:
 	if value == animation:
 		return
 	animation = value
 	animation_player.play(animation)
-
-func _on_Bird_area_entered(area: Area2D) -> void:
-	#manage collisions 
-		#-> other birds -> if flying pick another direction
-		# if walking -> pick point on other side (split timeout method from point pick) 
-		
-		#sparks -> die animation and send die signal to game
-	
-	pass # Replace with function body.
