@@ -25,7 +25,7 @@ var threshold := 10.0
 
 func _ready() -> void:
 	screen_size = OS.get_screen_size()
-	initialize(position) #test only
+	#initialize(position) #test only
 
 func initialize(start_position:Vector2 = Vector2.ZERO) -> void:
 	randomize()
