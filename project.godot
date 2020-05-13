@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Bird",
 "language": "GDScript",
 "path": "res://Bird.gd"
+}, {
+"base": "Area2D",
+"class": "Spark",
+"language": "GDScript",
+"path": "res://Spark.gd"
 } ]
 _global_script_class_icons={
-"Bird": ""
+"Bird": "",
+"Spark": ""
 }
 
 [application]
