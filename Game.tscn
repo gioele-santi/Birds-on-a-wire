@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
 
 [node name="Game" type="Node"]
@@ -20,9 +19,3 @@ points = PoolVector2Array( 120, 402, 912, 402 )
 [node name="Spawn_timer" type="Timer" parent="."]
 
 [node name="Birds" type="Node" parent="."]
-
-[node name="Bird" parent="Birds" instance=ExtResource( 1 )]
-position = Vector2( 161, 85 )
-
-[node name="Bird2" parent="Birds" instance=ExtResource( 1 )]
-position = Vector2( 787, 23 )
