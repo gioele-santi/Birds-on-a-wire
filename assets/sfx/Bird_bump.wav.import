@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Bird_blop.wav-0550e0fc1c3f986d74aaaff98d59af57.sample"
+path="res://.import/Bird_bump.wav-6321012a642f71024db8851b85dafdfc.sample"
 
 [deps]
 
-source_file="res://Bird_blop.wav"
-dest_files=[ "res://.import/Bird_blop.wav-0550e0fc1c3f986d74aaaff98d59af57.sample" ]
+source_file="res://assets/sfx/Bird_bump.wav"
+dest_files=[ "res://.import/Bird_bump.wav-6321012a642f71024db8851b85dafdfc.sample" ]
 
 [params]
 

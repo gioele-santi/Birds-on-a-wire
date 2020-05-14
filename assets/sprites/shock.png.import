@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bird_deadz-Sheet.png-b7c2fec52659ce75f1a5ad93effefe04.stex"
+path="res://.import/shock.png-992e6b4ff9e7b9555e58a4512f7f04c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bird_deadz-Sheet.png"
-dest_files=[ "res://.import/bird_deadz-Sheet.png-b7c2fec52659ce75f1a5ad93effefe04.stex" ]
+source_file="res://assets/sprites/shock.png"
+dest_files=[ "res://.import/shock.png-992e6b4ff9e7b9555e58a4512f7f04c3.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

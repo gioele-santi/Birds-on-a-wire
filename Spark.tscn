@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Spark.gd" type="Script" id=1]
-[ext_resource path="res://shock.png" type="Texture" id=2]
-[ext_resource path="res://bird_deadb-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/shock.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/bird_deadb-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/sfx/Spark_explosion.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/Spark_buzz.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sfx/Spark_shot.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 8.0
@@ -114,5 +117,14 @@ position = Vector2( 4, 0 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 5
+
+[node name="ShotSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="BuzzSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ExplosionSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 [connection signal="area_entered" from="." to="." method="_on_Spark_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

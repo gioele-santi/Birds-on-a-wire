@@ -25,6 +25,8 @@ var threshold := 10.0
 
 func _ready() -> void:
 	screen_size = OS.get_screen_size()
+	$Sprite.visible = true
+	$ExplosionSprite.visible = false #make sure in case some edit was done
 	#initialize(position) #test only
 
 func initialize(start_position:Vector2 = Vector2.ZERO) -> void:

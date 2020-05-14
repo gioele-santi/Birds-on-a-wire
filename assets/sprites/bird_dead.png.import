@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bird_3_sparrow.png-93c719a308eca550e93bc26dd76531fb.stex"
+path="res://.import/bird_dead.png-f563de763f9d9b73c3840860e7de13db.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bird_3_sparrow.png"
-dest_files=[ "res://.import/bird_3_sparrow.png-93c719a308eca550e93bc26dd76531fb.stex" ]
+source_file="res://assets/sprites/bird_dead.png"
+dest_files=[ "res://.import/bird_dead.png-f563de763f9d9b73c3840860e7de13db.stex" ]
 
 [params]
 

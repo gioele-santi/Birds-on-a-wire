@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Spark_shot.wav-62e9778bb32aa021e2c56727adad7f2b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Spark_shot.wav"
+dest_files=[ "res://.import/Spark_shot.wav-62e9778bb32aa021e2c56727adad7f2b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

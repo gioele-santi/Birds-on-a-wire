@@ -7,11 +7,13 @@ var direction := Vector2.ZERO #or -1 according to pressed button
 export (float) var speed = 400.0
 
 func _ready() -> void:
-	pass # Replace with function body.
+	$Sprite.visible = true
+	$ExplosionSprite.visible = false
 
 func initialize(start_position: Vector2, verse: int) -> void:
 	position = start_position
 	direction = Vector2(verse, 0)
+	$BuzzSfx.play()
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
@@ -24,6 +26,7 @@ func _on_Spark_area_entered(area: Area2D) -> void:
 		if direction.x > 0:
 			set_process(false)
 			$AnimationPlayer.play("explode")
+			$ExplosionSfx.play()
 		else:
 			queue_free()
 		

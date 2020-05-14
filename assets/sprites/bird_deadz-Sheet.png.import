@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bird_deadg-Sheet.png-dc6d62209ff58e95edafa2672e0e7f6d.stex"
+path="res://.import/bird_deadz-Sheet.png-2984aa59cf82005441cd033c17be95e3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bird_deadg-Sheet.png"
-dest_files=[ "res://.import/bird_deadg-Sheet.png-dc6d62209ff58e95edafa2672e0e7f6d.stex" ]
+source_file="res://assets/sprites/bird_deadz-Sheet.png"
+dest_files=[ "res://.import/bird_deadz-Sheet.png-2984aa59cf82005441cd033c17be95e3.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bird_deadb-Sheet.png-cc3b50d287d4b7752c5a79f45a28a736.stex"
+path="res://.import/bird_deadg-Sheet.png-e733d484259f9df8867a264f9d62c311.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bird_deadb-Sheet.png"
-dest_files=[ "res://.import/bird_deadb-Sheet.png-cc3b50d287d4b7752c5a79f45a28a736.stex" ]
+source_file="res://assets/sprites/bird_deadg-Sheet.png"
+dest_files=[ "res://.import/bird_deadg-Sheet.png-e733d484259f9df8867a264f9d62c311.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
