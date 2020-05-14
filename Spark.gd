@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 
 func _on_Spark_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Sparks"):
+		$CollisionShape2D.visible = false # otherwise it stays in place and destroys other sparks even if not on screen
 		if direction.x > 0:
 			set_process(false)
 			$AnimationPlayer.play("explode")

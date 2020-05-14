@@ -29,11 +29,11 @@ func _ready() -> void:
 	$ExplosionSprite.visible = false #make sure in case some edit was done
 	#initialize(position) #test only
 
-func initialize(start_position:Vector2 = Vector2.ZERO) -> void:
+func initialize(start_position:Vector2 = Vector2.ZERO, speed_bump: int = 0) -> void:
 	randomize()
 	change_state(State.FLY)
 	position = start_position
-	
+	speed += speed_bump * speed * 2 / 100 # 2% speed bump for every level
 	pick_trajectory()
 
 func _process(delta: float) -> void:
@@ -80,6 +80,7 @@ func change_state(new_state) -> void:
 			set_process(true)
 		State.DIE:
 			set_process(false)
+			#disable collision to avoid removing other sparks or bumping birds
 			self.animation = "death"
 
 func pick_trajectory() -> void:
@@ -116,6 +117,7 @@ func _on_Timer_timeout() -> void:
 
 func _on_Bird_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Sparks"):
+		$CollisionShape2D.visible = false
 		area.queue_free()
 		change_state(State.DIE)
 	elif area.is_in_group("Birds"):
@@ -154,6 +156,3 @@ func set_animation(value: String) -> void:
 		return
 	animation = value
 	animation_player.play(animation)
-
-
-

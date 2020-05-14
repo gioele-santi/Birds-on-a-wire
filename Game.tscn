@@ -8,6 +8,7 @@
 script = ExtResource( 2 )
 Bird_scene = ExtResource( 1 )
 Spark_scene = ExtResource( 3 )
+SIGNAL_DECREASE = 30.0
 
 [node name="AntennaA" type="Polygon2D" parent="."]
 position = Vector2( 121, 399 )
