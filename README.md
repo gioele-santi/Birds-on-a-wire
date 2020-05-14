@@ -1,5 +1,5 @@
 # GodotWildJam21
-Game for 21 st Godot Wild Jam - Theme connection + 2 buttons wild card (I hope also juicing, but we will see)
+My entry for 21 st Godot Wild Jam - Theme **connection** + *2 buttons* wild card (I hope also juicing, but we will see)
 
 ## Synopsis
 
@@ -17,5 +17,6 @@ Game developed by Gioele Santi. All code and other stuff made by made except the
 - Bird sprite: [LPC Birds by bluecarrot16](https://opengameart.org/content/lpc-birds)
 - Shock sprites [Lightning shock spell by Clint Bellanger](https://opengameart.org/content/lightning-shock-spell)
 - Explosion: [Explosion effect by LIXING](https://opengameart.org/content/explosion-effect-pixel-art)
+- Fonts: [8-bit Arcade by Damien Gosset](https://www.dafont.com/it/8-bit-arcade.font?l[]=10&l[]=1)
 
-Sounds were made using Bfxr (sorry if they are similar to other you may know).
+Sounds were generated using [Bfxr](https://www.bfxr.net/) (sorry if they are similar to other you may know).
