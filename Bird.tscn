@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/sprites/bird_3_sparrow.png" type="Texture" id=1]
 [ext_resource path="res://Bird.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/sfx/Bird_blop.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sprites/bird_dead.png" type="Texture" id=5]
 [ext_resource path="res://assets/sfx/Bird_explosion.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/Bird_bump.wav" type="AudioStream" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.34616
@@ -264,11 +265,17 @@ position = Vector2( -1.90735e-06, -9.6 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-visible = false
 position = Vector2( -9.53674e-07, -9.6 )
 texture = ExtResource( 1 )
 vframes = 8
 hframes = 3
+
+[node name="ExplosionSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.141421, -9.61664 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 5 )
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death = SubResource( 2 )
@@ -289,14 +296,12 @@ volume_db = -13.149
 stream = ExtResource( 4 )
 volume_db = -8.368
 
-[node name="ExplosionSprite" type="Sprite" parent="."]
-position = Vector2( 0.141421, -9.61664 )
-texture = ExtResource( 5 )
-hframes = 5
-
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 6 )
+
+[node name="Bump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
 [connection signal="area_entered" from="." to="." method="_on_Bird_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

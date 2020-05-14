@@ -54,12 +54,12 @@ func _on_Spawn_timer_timeout() -> void:
 	spawn_timer.wait_time = rand_range(0.2, 1.5)
 	spawn_timer.start()
 
-func _on_bird_land() -> void:
+func _on_Bird_land() -> void:
 	print("Bird landed")
 	connection_strength -= SIGNAL_DECREASE
 	check_game()
 
-func _on_bird_fly_away() -> void:
+func _on_Bird_fly_away() -> void:
 	print("Bird fly away")
 	connection_strength = min(connection_strength + SIGNAL_DECREASE, MAX_CONNECTION_STRENGTH) 
 	check_game()

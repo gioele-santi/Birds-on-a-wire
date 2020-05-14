@@ -121,6 +121,7 @@ func _on_Bird_area_entered(area: Area2D) -> void:
 		area.queue_free()
 		change_state(State.DIE)
 	elif area.is_in_group("Birds"):
+		$Bump.play()
 		# change direction if walking or pick a new route if flying
 		pass
 
