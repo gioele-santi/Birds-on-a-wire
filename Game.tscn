@@ -19,6 +19,8 @@ polygon = PoolVector2Array( 0, 0, -40, 200, 40, 200 )
 
 [node name="Cable1" type="Line2D" parent="."]
 points = PoolVector2Array( 120, 402, 912, 402 )
+width = 5.0
+default_color = Color( 0, 0, 0, 1 )
 
 [node name="Spawn_timer" type="Timer" parent="."]
 one_shot = true

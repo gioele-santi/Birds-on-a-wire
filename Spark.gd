@@ -20,5 +20,14 @@ func _process(delta: float) -> void:
 
 
 func _on_Spark_area_entered(area: Area2D) -> void:
-	#check for collision with other sparks
-	pass # Replace with function body.
+	if area.is_in_group("Sparks"):
+		if direction.x > 0:
+			set_process(false)
+			$AnimationPlayer.play("explode")
+		else:
+			queue_free()
+		
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	queue_free()

@@ -54,6 +54,11 @@ func change_state(new_state) -> void:
 	match state:
 		State.IDLE:
 			timer.stop()
+			if new_state == State.FLY:
+				emit_signal("Fly_away")
+		State.FLY:
+			if new_state == State.IDLE:
+				emit_signal("Landed")
 	
 	state = new_state
 
@@ -71,6 +76,9 @@ func change_state(new_state) -> void:
 		State.WALK:
 			self.animation = "walk"
 			set_process(true)
+		State.DIE:
+			set_process(false)
+			self.animation = "death"
 
 func pick_trajectory() -> void:
 	trajectory_points = []
@@ -105,13 +113,17 @@ func _on_Timer_timeout() -> void:
 	change_state(State.WALK)
 
 func _on_Bird_area_entered(area: Area2D) -> void:
-	#manage collisions 
-		#-> other birds -> if flying pick another direction
-		# if walking -> pick point on other side (split timeout method from point pick) 
-		
-		#sparks -> die animation and send die signal to game
-	
-	pass # Replace with function body.
+	if area.is_in_group("Sparks"):
+		area.queue_free()
+		change_state(State.DIE)
+	elif area.is_in_group("Birds"):
+		# change direction if walking or pick a new route if flying
+		pass
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	if anim_name == "death":
+		emit_signal("Die")
+		queue_free()
 
 # Setters
 
@@ -140,3 +152,6 @@ func set_animation(value: String) -> void:
 		return
 	animation = value
 	animation_player.play(animation)
+
+
+
