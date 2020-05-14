@@ -12,7 +12,7 @@ var animation := "" setget set_animation
 
 var screen_size := Vector2.ZERO
 var wire_y_1 := 410.0
-var wire_y_2 := 0.0
+var wire_y_2 := 0.0 #not used
 
 var trajectory_points := []
 
@@ -116,7 +116,7 @@ func _on_Timer_timeout() -> void:
 	change_state(State.WALK)
 
 func _on_Bird_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Sparks"):
+	if area.is_in_group("Sparks") and state != State.FLY: #it must touch the wire
 		$CollisionShape2D.visible = false
 		area.queue_free()
 		change_state(State.DIE)

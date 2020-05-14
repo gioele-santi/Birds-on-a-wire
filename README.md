@@ -1,4 +1,4 @@
-# GodotWildJam21
+# Godot Wild Jam 21
 My entry for 21 st Godot Wild Jam - Theme **connection** + *2 buttons* wild card (I hope also juicing, but we will see)
 
 ## Synopsis

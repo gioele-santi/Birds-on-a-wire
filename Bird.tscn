@@ -273,7 +273,6 @@ hframes = 3
 [node name="ExplosionSprite" type="Sprite" parent="."]
 visible = false
 position = Vector2( 0.141421, -9.61664 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 

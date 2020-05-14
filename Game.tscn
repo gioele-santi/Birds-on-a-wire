@@ -1,14 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
 [ext_resource path="res://Spark.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Signal Bar.gd" type="Script" id=4]
+[ext_resource path="res://assets/gui/progress_bar.png" type="Texture" id=5]
+[ext_resource path="res://assets/gui/progress_bar_bg.png" type="Texture" id=6]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
 Bird_scene = ExtResource( 1 )
 Spark_scene = ExtResource( 3 )
-SIGNAL_DECREASE = 30.0
 
 [node name="AntennaA" type="Polygon2D" parent="."]
 position = Vector2( 121, 399 )
@@ -29,4 +31,43 @@ one_shot = true
 [node name="Birds" type="Node" parent="."]
 
 [node name="Sparks" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Signal Bar" type="Control" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_right = 160.0
+margin_bottom = 40.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Signal Bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Signal Bar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -16.0
+margin_right = 128.0
+margin_bottom = 20.0
+max_value = 1000.0
+value = 1000.0
+texture_progress = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="update_connection_strength" from="." to="CanvasLayer/Signal Bar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
