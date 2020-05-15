@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -6,11 +6,43 @@
 [ext_resource path="res://Signal Bar.gd" type="Script" id=4]
 [ext_resource path="res://assets/gui/progress_bar.png" type="Texture" id=5]
 [ext_resource path="res://assets/gui/progress_bar_bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/city.png" type="Texture" id=7]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
 Bird_scene = ExtResource( 1 )
 Spark_scene = ExtResource( 3 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_scale = 0.8
+
+[node name="Sky" type="Polygon2D" parent="Background"]
+color = Color( 0.313726, 0.733333, 1, 1 )
+polygon = PoolVector2Array( -10, -10, 1044, -10, 1044, 610, -10, 610 )
+
+[node name="Background2" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+follow_viewport_scale = 0.55
+
+[node name="City" type="Sprite" parent="Background2"]
+visible = false
+position = Vector2( 529, 503 )
+scale = Vector2( 0.496711, 0.496711 )
+texture = ExtResource( 7 )
+
+[node name="Background3" type="CanvasLayer" parent="."]
+layer = -1
+follow_viewport_enable = true
+follow_viewport_scale = 0.8
+
+[node name="City" type="Sprite" parent="Background3"]
+visible = false
+position = Vector2( 540, 495 )
+scale = Vector2( 0.496711, 0.496711 )
+texture = ExtResource( 7 )
+flip_h = true
 
 [node name="AntennaA" type="Polygon2D" parent="."]
 position = Vector2( 121, 399 )
@@ -32,9 +64,9 @@ one_shot = true
 
 [node name="Sparks" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Signal Bar" type="Control" parent="CanvasLayer"]
+[node name="Signal Bar" type="Control" parent="GUI"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -160.0
@@ -45,7 +77,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Signal Bar"]
+[node name="TextureRect" type="TextureRect" parent="GUI/Signal Bar"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 6 )
@@ -54,7 +86,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="CanvasLayer/Signal Bar"]
+[node name="TextureProgress" type="TextureProgress" parent="GUI/Signal Bar"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -69,5 +101,5 @@ texture_progress = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="update_connection_strength" from="." to="CanvasLayer/Signal Bar" method="_on_Game_update_connection_strength"]
+[connection signal="update_connection_strength" from="." to="GUI/Signal Bar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]

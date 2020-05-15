@@ -116,6 +116,8 @@ func _on_Timer_timeout() -> void:
 	change_state(State.WALK)
 
 func _on_Bird_area_entered(area: Area2D) -> void:
+	if state == State.DIE:
+		return
 	if area.is_in_group("Sparks") and state != State.FLY: #it must touch the wire
 		$CollisionShape2D.visible = false
 		area.queue_free()
