@@ -69,7 +69,7 @@ func change_state(new_state) -> void:
 		State.IDLE:
 			set_process(false)
 			self.animation = "idle"
-			timer.wait_time = rand_range(5.0, 8.0)
+			timer.wait_time = rand_range(0.5, 2.0)
 			timer.start()
 		State.FLY:
 			pick_trajectory()

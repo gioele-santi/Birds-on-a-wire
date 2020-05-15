@@ -4,8 +4,8 @@
 [ext_resource path="res://Game.gd" type="Script" id=2]
 [ext_resource path="res://Spark.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Signal Bar.gd" type="Script" id=4]
-[ext_resource path="res://assets/gui/progress_bar.png" type="Texture" id=5]
-[ext_resource path="res://assets/gui/progress_bar_bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/gui/progress_bar_thin_bg.png" type="Texture" id=5]
+[ext_resource path="res://assets/gui/progress_bar_thin.png" type="Texture" id=6]
 [ext_resource path="res://assets/fonts/8_bit_big_inside.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/fonts/8_bit_big_outside.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/fonts/8_bit_small_outside.tres" type="DynamicFont" id=9]
@@ -54,9 +54,12 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="GUI/Signal Bar"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 6 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -64,21 +67,20 @@ __meta__ = {
 
 [node name="TextureProgress" type="TextureProgress" parent="GUI/Signal Bar"]
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -128.0
-margin_top = -16.0
-margin_right = 128.0
-margin_bottom = 20.0
+margin_left = -256.0
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 29.0
 max_value = 1000.0
 value = 1000.0
-texture_progress = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Gameover" type="Control" parent="GUI"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
