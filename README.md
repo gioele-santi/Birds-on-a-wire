@@ -16,7 +16,7 @@ Game developed by Gioele Santi. All code and other stuff made by made except the
 
 - Bird sprite: [LPC Birds by bluecarrot16](https://opengameart.org/content/lpc-birds)
 - Shock sprites: [Lightning shock spell by Clint Bellanger](https://opengameart.org/content/lightning-shock-spell)
-- City background: [City Background Repetitive 2 by Alucard](https://opengameart.org/content/city-background-repetitive-2)
+- Tilesets: [CSuper Seasonal Platformer Tiles by GrafxKid](https://opengameart.org/content/super-seasonal-platformer-tiles)
 - Explosion: [Explosion effect by LIXING](https://opengameart.org/content/explosion-effect-pixel-art)
 - Fonts: [8-bit Arcade by Damien Gosset](https://www.dafont.com/it/8-bit-arcade.font?l[]=10&l[]=1)
 

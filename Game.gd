@@ -23,9 +23,8 @@ export (int, 1, 5) var TIME_SIGNAL_DECREASE := 1
 
 func _ready() -> void:
 	randomize()
-	connection_strength = MAX_CONNECTION_STRENGTH
-	spawn_timer.wait_time = rand_range(0.2, 1.5)
-	spawn_timer.start()
+	$GUI/Gameover.visible = false
+	start_game()
 
 func _process(delta: float) -> void:
 	if connection_strength < MAX_CONNECTION_STRENGTH:
@@ -96,11 +95,18 @@ func next_level() -> void:
 	spawn_timer.wait_time = rand_range(0.2, 1.5) #time according to visual feed back
 	spawn_timer.start() #timer will take care of bird count
 
+func start_game() -> void:
+	level = 1
+	connection_strength = MAX_CONNECTION_STRENGTH
+	spawn_timer.wait_time = rand_range(0.2, 1.5)
+	spawn_timer.start()
+
 func gameover() -> void:
 	set_process(false)
 	for bird in $Birds.get_children():
 		bird.queue_free()
-	print("GAME OVER")
+	$GUI/Gameover.visible = true
+	#timer to present start new game option
 	#present elapsed time, removed birds and restart option
 	pass
 
