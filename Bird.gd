@@ -124,8 +124,10 @@ func _on_Bird_area_entered(area: Area2D) -> void:
 		change_state(State.DIE)
 	elif area.is_in_group("Birds"):
 		$Bump.play()
-		# change direction if walking or pick a new route if flying
-		pass
+		if state == State.FLY:
+			pick_trajectory()
+		elif state == State.WALK:
+			change_state(State.IDLE)
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "death":

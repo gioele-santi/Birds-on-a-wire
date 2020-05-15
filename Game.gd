@@ -10,13 +10,13 @@ export (PackedScene) var Spark_scene
 
 # Level logic
 onready var spawn_timer := $Spawn_timer
-export (int) var level := 1
+var level := 1
 var alive_bird_count := 0 # use separate count as queue free is completed after game check
 var landed_bird_count := 0 #used to check in connection strength update
 
 # Game status
 var connection_strength := 100.0 setget set_connection_strength
-export (int, 0, 100) var MAX_CONNECTION_STRENGTH := 1000
+export (int, 0, 1000) var MAX_CONNECTION_STRENGTH := 1000
 export (int, 5, 25) var BIRD_SIGNAL_DECREASE := 10
 export (int, 1, 5) var TIME_SIGNAL_DECREASE := 1
 
