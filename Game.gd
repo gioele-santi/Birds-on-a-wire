@@ -2,11 +2,15 @@ extends Node
 
 class_name Game
 
+enum State {PLAY, START, GAMEOVER}
+
 signal update_connection_strength(value)
 
 # Scenes
 export (PackedScene) var Bird_scene
 export (PackedScene) var Spark_scene
+
+var state = -1 setget set_state
 
 # Level logic
 onready var spawn_timer := $Spawn_timer
@@ -23,8 +27,12 @@ export (int, 1, 5) var TIME_SIGNAL_DECREASE := 1
 
 func _ready() -> void:
 	randomize()
-	$GUI/Gameover.visible = false
+	$GUI/Title.visible = true #visible only at start
+	#start_game()
 	start_game()
+
+func start_game() -> void:
+	self.state = State.START
 
 func _process(delta: float) -> void:
 	if connection_strength < MAX_CONNECTION_STRENGTH:
@@ -33,10 +41,14 @@ func _process(delta: float) -> void:
 			check_game()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("button_1"):
-		shot_spark(1)
-	elif event.is_action_pressed("button_2"):
-		shot_spark(-1)
+	if state == State.PLAY:
+		if event.is_action_pressed("button_1"):
+			shot_spark(1)
+		elif event.is_action_pressed("button_2"):
+			shot_spark(-1)
+	elif state == State.START:
+		if event.is_action_pressed("button_1") or event.is_action_pressed("button_2"):
+			self.state = State.PLAY
 
 func shot_spark(direction: int) -> void:
 	var new_spark : Spark = Spark_scene.instance()
@@ -80,7 +92,7 @@ func _on_Bird_die() -> void:
 func check_game() -> void:
 	#gameover_check
 	if connection_strength <= 0:
-		gameover()
+		self.state = State.GAMEOVER
 	#level check
 	if alive_bird_count <= 0:
 		next_level()
@@ -92,25 +104,44 @@ func next_level() -> void:
 	spawn_timer.wait_time = rand_range(0.2, 1.5) #time according to visual feed back
 	spawn_timer.start() #timer will take care of bird count
 
-func start_game() -> void:
-	$GUI/SignalBar.visible = true
-	level = 1
-	connection_strength = MAX_CONNECTION_STRENGTH
-	spawn_timer.wait_time = rand_range(0.2, 1.5)
-	spawn_timer.start()
-
-func gameover() -> void:
-	set_process(false)
-	for bird in $Birds.get_children():
-		bird.queue_free()
-	$GUI/SignalBar.visible = false
-	$GUI/Gameover.visible = true
-	#timer to present start new game option
-	#present elapsed time, removed birds and restart option
-	pass
-
 func set_connection_strength(value) -> void:
 	if value == connection_strength:
 		return
 	connection_strength = min(value, MAX_CONNECTION_STRENGTH)
 	emit_signal("update_connection_strength", connection_strength) #connected using GUI
+
+func set_state(value) -> void:
+	if state == value:
+		return
+	print("State changed from %s to %s" % [state, value])
+	state = value
+	
+	
+	match state:
+		State.START:
+			set_process(false)
+			$GUI/SignalBar.visible = false
+			$GUI/Start.visible = true
+		State.PLAY:
+			$GUI/SignalBar.visible = true
+			#add level and tower GUIs
+			$GUI/Title.visible = false
+			$GUI/Start.visible = false
+			$GUI/Gameover.visible = false
+			set_process(true)
+			level = 1
+			landed_bird_count = 0
+			alive_bird_count = 0
+			self.connection_strength = MAX_CONNECTION_STRENGTH
+			spawn_timer.wait_time = rand_range(0.2, 1.5)
+			spawn_timer.start()
+		State.GAMEOVER:
+			set_process(false)
+			for bird in $Birds.get_children():
+				bird.queue_free()
+			$GUI/SignalBar.visible = false
+			$GUI/Title.visible = false
+			$GUI/Start.visible = false #show with timer
+			$GUI/Gameover.visible = true
+			$RestartTimer.start()
+		
