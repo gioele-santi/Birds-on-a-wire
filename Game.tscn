@@ -28,6 +28,12 @@ points = PoolVector2Array( 143, 392, 27, 392 )
 width = 5.0
 default_color = Color( 0, 0, 0, 1 )
 
+[node name="CableRight" type="Line2D" parent="."]
+position = Vector2( 930, 0 )
+points = PoolVector2Array( 143, 392, 27, 392 )
+width = 5.0
+default_color = Color( 0, 0, 0, 1 )
+
 [node name="BackdropLayer" type="CanvasLayer" parent="."]
 layer = -10
 follow_viewport_scale = 0.903
