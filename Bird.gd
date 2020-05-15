@@ -11,8 +11,7 @@ var state = State.FLY
 var animation := "" setget set_animation
 
 var screen_size := Vector2.ZERO
-var wire_y_1 := 410.0
-var wire_y_2 := 0.0 #not used
+var wire_y_1 := 392.0
 
 var trajectory_points := []
 
@@ -21,7 +20,7 @@ onready var timer := $Timer
 
 var velocity := Vector2.ZERO setget set_velocity
 var speed := 150.0
-var threshold := 10.0
+var threshold := 3.0
 
 func _ready() -> void:
 	screen_size = OS.get_screen_size()
@@ -67,6 +66,7 @@ func change_state(new_state) -> void:
 	# Enter State
 	match state:
 		State.IDLE:
+			position.y = wire_y_1 #make sure they are on the cable
 			set_process(false)
 			self.animation = "idle"
 			timer.wait_time = rand_range(0.5, 2.0)
@@ -85,7 +85,7 @@ func change_state(new_state) -> void:
 
 func pick_trajectory() -> void:
 	trajectory_points = []
-	var count = randi() % 3 + 2 # random number between 2 and 4
+	var count = randi() % 3 + 1 # random number between 1 and 3
 	for i in count:
 		var found := false
 		var point:= Vector2.ZERO

@@ -39,12 +39,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		shot_spark(-1)
 
 func shot_spark(direction: int) -> void:
-	var start_position := Vector2(120.0, 402.0)
-	if direction < 0:
-		start_position.x = 912.0
 	var new_spark : Spark = Spark_scene.instance()
 	$Sparks.add_child(new_spark)
-	new_spark.initialize(start_position, direction)
+	new_spark.initialize(direction)
 
 func spawn_bird() -> void:
 	var start_point = Vector2(rand_range(0.0, 1024.0), 0.0)
@@ -96,6 +93,7 @@ func next_level() -> void:
 	spawn_timer.start() #timer will take care of bird count
 
 func start_game() -> void:
+	$GUI/SignalBar.visible = true
 	level = 1
 	connection_strength = MAX_CONNECTION_STRENGTH
 	spawn_timer.wait_time = rand_range(0.2, 1.5)
@@ -105,6 +103,7 @@ func gameover() -> void:
 	set_process(false)
 	for bird in $Birds.get_children():
 		bird.queue_free()
+	$GUI/SignalBar.visible = false
 	$GUI/Gameover.visible = true
 	#timer to present start new game option
 	#present elapsed time, removed birds and restart option

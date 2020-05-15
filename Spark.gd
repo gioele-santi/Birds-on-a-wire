@@ -6,18 +6,25 @@ signal Explosion(position)
 var direction := Vector2.ZERO #or -1 according to pressed button
 export (float) var speed = 400.0
 
+var LIMIT_LEFT := 143.0
+var LIMIT_RIGHT := 912.0
+var WIRE_HEIGHT := 392.0
+
 func _ready() -> void:
 	$Sprite.visible = true
 	$ExplosionSprite.visible = false
 
-func initialize(start_position: Vector2, verse: int) -> void:
+func initialize(verse: int) -> void:
+	var start_position := Vector2(LIMIT_LEFT, WIRE_HEIGHT)
+	if verse < 0:
+		start_position.x = LIMIT_RIGHT
 	position = start_position
 	direction = Vector2(verse, 0)
 	$BuzzSfx.play()
 
 func _process(delta: float) -> void:
 	position += direction * speed * delta
-	if position.x < 120.0 or position.x > 912.0:
+	if position.x < LIMIT_LEFT or position.x > LIMIT_RIGHT:
 		queue_free()
 
 

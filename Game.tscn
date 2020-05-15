@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/fonts/8_bit_big_outside.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/fonts/8_bit_small_outside.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/fonts/8_bit_small_inside.tres" type="DynamicFont" id=10]
+[ext_resource path="res://assets/tilesets/base_tileset.tres" type="TileSet" id=11]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -21,17 +22,26 @@ color = Color( 0.313726, 0.733333, 1, 1 )
 polygon = PoolVector2Array( -10, -10, 1044, -10, 1044, 610, -10, 610 )
 
 [node name="AntennaA" type="Polygon2D" parent="."]
+visible = false
 position = Vector2( 121, 399 )
 polygon = PoolVector2Array( 0, 0, -40, 200, 40, 200 )
 
 [node name="AntennaB" type="Polygon2D" parent="."]
+visible = false
 position = Vector2( 913, 399 )
 polygon = PoolVector2Array( 0, 0, -40, 200, 40, 200 )
 
 [node name="Cable1" type="Line2D" parent="."]
-points = PoolVector2Array( 120, 402, 912, 402 )
+points = PoolVector2Array( 143, 392, 912, 392 )
 width = 5.0
 default_color = Color( 0, 0, 0, 1 )
+
+[node name="Ground" type="TileMap" parent="."]
+scale = Vector2( 3, 3 )
+tile_set = ExtResource( 11 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 524290, 18, 0, 524307, 18, 0, 589826, 19, 0, 589843, 19, 0, 655362, 19, 0, 655379, 19, 0, 720898, 19, 0, 720915, 19, 0, 851954, 1, 0, 851955, 0, 0, 851957, 0, 0, 851958, 0, 0, 851959, 0, 0, 851960, 0, 0, 851961, 0, 0, 851962, 0, 0, 851963, 0, 0, 851964, 0, 0, 851965, 0, 0, 851966, 0, 0, 851967, 0, 0, 786432, 0, 0, 786434, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786451, 0, 0, 786452, 0, 0, 786453, 0, 0, 786454, 0, 0, 786455, 0, 0, 786456, 0, 0, 786457, 0, 0, 786458, 0, 0, 786459, 0, 0, 786460, 0, 0, 786461, 0, 0, 786462, 0, 0, 786463, 0, 0, 786465, 0, 0, 786467, 2, 0, 917490, 3, 0, 852003, 4, 0, 983026, 3, 0, 983027, 21, 0, 983028, 21, 0, 983029, 21, 0, 983030, 21, 0, 983031, 21, 0, 983032, 21, 0, 983033, 21, 0, 983034, 21, 0, 983035, 21, 0, 983036, 21, 0, 983037, 21, 0, 983038, 21, 0, 983039, 21, 0, 917504, 21, 0, 917505, 21, 0, 917506, 21, 0, 917507, 21, 0, 917508, 21, 0, 917509, 21, 0, 917510, 21, 0, 917511, 21, 0, 917512, 21, 0, 917513, 21, 0, 917514, 21, 0, 917515, 21, 0, 917516, 21, 0, 917517, 21, 0, 917518, 21, 0, 917519, 21, 0, 917520, 21, 0, 917521, 21, 0, 917522, 21, 0, 917523, 21, 0, 917524, 21, 0, 917525, 21, 0, 917526, 21, 0, 917527, 21, 0, 917528, 21, 0, 917529, 21, 0, 917530, 21, 0, 917531, 21, 0, 917532, 21, 0, 917533, 21, 0, 917534, 21, 0, 917535, 21, 0, 917536, 21, 0, 917537, 21, 0, 917539, 4, 0, 1048562, 3, 0, 983075, 4, 0, 1114098, 3, 0, 1114099, 21, 0, 1114100, 21, 0, 1114101, 21, 0, 1114102, 21, 0, 1114103, 21, 0, 1114104, 21, 0, 1114105, 21, 0, 1114106, 21, 0, 1114107, 21, 0, 1114108, 21, 0, 1114109, 21, 0, 1114110, 21, 0, 1114111, 21, 0, 1048576, 21, 0, 1048577, 21, 0, 1048578, 21, 0, 1048579, 21, 0, 1048580, 21, 0, 1048581, 21, 0, 1048582, 21, 0, 1048583, 21, 0, 1048584, 21, 0, 1048585, 21, 0, 1048586, 21, 0, 1048587, 21, 0, 1048588, 21, 0, 1048589, 21, 0, 1048590, 21, 0, 1048591, 21, 0, 1048592, 21, 0, 1048593, 21, 0, 1048594, 21, 0, 1048595, 21, 0, 1048596, 21, 0, 1048597, 21, 0, 1048598, 21, 0, 1048599, 21, 0, 1048600, 21, 0, 1048601, 21, 0, 1048602, 21, 0, 1048603, 21, 0, 1048604, 21, 0, 1048605, 21, 0, 1048606, 21, 0, 1048607, 21, 0, 1048608, 21, 0, 1048609, 21, 0, 1048611, 4, 0, 1179634, 3, 0, 1114147, 4, 0, 1245170, 5, 0, 1245171, 20, 0, 1245172, 20, 0, 1245173, 20, 0, 1245174, 20, 0, 1245175, 20, 0, 1245176, 20, 0, 1245177, 20, 0, 1245178, 20, 0, 1245179, 20, 0, 1245180, 20, 0, 1245181, 20, 0, 1245182, 20, 0, 1245183, 20, 0, 1179648, 20, 0, 1179649, 20, 0, 1179650, 20, 0, 1179651, 20, 0, 1179652, 20, 0, 1179653, 20, 0, 1179654, 20, 0, 1179655, 20, 0, 1179656, 20, 0, 1179657, 20, 0, 1179658, 20, 0, 1179659, 20, 0, 1179660, 20, 0, 1179661, 20, 0, 1179662, 20, 0, 1179663, 20, 0, 1179664, 20, 0, 1179665, 20, 0, 1179666, 20, 0, 1179667, 20, 0, 1179668, 20, 0, 1179669, 20, 0, 1179670, 20, 0, 1179671, 20, 0, 1179672, 20, 0, 1179673, 20, 0, 1179674, 20, 0, 1179675, 20, 0, 1179676, 20, 0, 1179677, 20, 0, 1179678, 20, 0, 1179679, 20, 0, 1179680, 20, 0, 1179681, 20, 0, 1179683, 6, 0 )
 
 [node name="Spawn_timer" type="Timer" parent="."]
 one_shot = true
@@ -42,7 +52,8 @@ one_shot = true
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Signal Bar" type="Control" parent="GUI"]
+[node name="SignalBar" type="Control" parent="GUI"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -160.0
@@ -53,7 +64,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="GUI/Signal Bar"]
+[node name="TextureRect" type="TextureRect" parent="GUI/SignalBar"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -256.0
@@ -65,7 +76,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="TextureProgress" parent="GUI/Signal Bar"]
+[node name="TextureProgress" type="TextureProgress" parent="GUI/SignalBar"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -256.0
@@ -165,5 +176,5 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="update_connection_strength" from="." to="GUI/Signal Bar" method="_on_Game_update_connection_strength"]
+[connection signal="update_connection_strength" from="." to="GUI/SignalBar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
