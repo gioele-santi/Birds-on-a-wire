@@ -18,6 +18,7 @@ var level := 1
 var alive_bird_count := 0 # use separate count as queue free is completed after game check
 var landed_bird_count := 0 #used to check in connection strength update
 
+
 # Game status
 var connection_strength := 100.0 setget set_connection_strength
 export (int, 0, 1000) var MAX_CONNECTION_STRENGTH := 100
@@ -51,6 +52,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			self.state = State.PLAY
 
 func shot_spark(direction: int) -> void:
+	var antenna : Antenna = $GameLayer/AntennaL if direction > 0 else $GameLayer/AntennaR 
+	if not antenna.can_shoot:
+		return
+	antenna.shoot() #discharge
 	var new_spark : Spark = Spark_scene.instance()
 	$Sparks.add_child(new_spark)
 	new_spark.initialize(direction)
@@ -113,7 +118,6 @@ func set_connection_strength(value) -> void:
 func set_state(value) -> void:
 	if state == value:
 		return
-	print("State changed from %s to %s" % [state, value])
 	state = value
 	
 	

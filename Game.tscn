@@ -99,7 +99,7 @@ tile_data = PoolIntArray( 524290, 18, 0, 524307, 18, 0, 589826, 19, 0, 589843, 1
 position = Vector2( 120, 392 )
 
 [node name="AntennaR" parent="GameLayer" instance=ExtResource( 12 )]
-position = Vector2( 936, 392 )
+position = Vector2( 937, 392 )
 verse = -1
 
 [node name="Spawn_timer" type="Timer" parent="."]
@@ -117,7 +117,6 @@ one_shot = true
 layer = 15
 
 [node name="SignalBar" type="Control" parent="GUI"]
-visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -160.0
@@ -147,7 +146,6 @@ margin_left = -256.0
 margin_top = 12.0
 margin_right = 256.0
 margin_bottom = 29.0
-max_value = 100.0
 value = 100.0
 texture_progress = ExtResource( 6 )
 __meta__ = {

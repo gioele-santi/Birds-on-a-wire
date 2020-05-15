@@ -10,11 +10,12 @@ export (int) var verse := 1 # verse of emission
 
 var SHOT_POWER := 100
 var MAX_POWER := 300.0
-var RECHARGE := 25.0
+var RECHARGE := 50.0
 var current_power : float setget set_current_power
 
 func _ready() -> void:
 	$ExplosionSprite.visible = false
+	current_power = MAX_POWER
 
 func _process(delta: float) -> void:
 	if current_power < MAX_POWER:
@@ -35,4 +36,4 @@ func set_current_power(value) -> void:
 	elif value >= MAX_POWER:
 		can_shoot = true
 	current_power = min(value, MAX_POWER)
-	update()
+	emit_signal("update_charge", current_power)
