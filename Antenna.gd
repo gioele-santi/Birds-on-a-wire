@@ -6,13 +6,15 @@ signal update_charge(value)
 
 var can_shoot := true
 
+export (int) var verse := 1 # verse of emission
+
 var SHOT_POWER := 100
 var MAX_POWER := 300.0
 var RECHARGE := 25.0
 var current_power : float setget set_current_power
 
 func _ready() -> void:
-	pass # Replace with function body.
+	$ExplosionSprite.visible = false
 
 func _process(delta: float) -> void:
 	if current_power < MAX_POWER:
@@ -20,10 +22,10 @@ func _process(delta: float) -> void:
 
 func shoot() -> void:
 	#perform emission in game scene (if curved path is added, it will be easier)
-	current_power -= SHOT_POWER
+	self.current_power -= SHOT_POWER
 
-func _on_Antenna_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Sparks"):
+func _on_Antenna_area_entered(area: Spark) -> void:
+	if area.is_in_group("Sparks") and area.direction.x * verse < 0 :
 		$AnimationPlayer.play("Explosion")
 		self.current_power = 0
 
