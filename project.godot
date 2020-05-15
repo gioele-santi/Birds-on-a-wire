@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "Antenna",
+"language": "GDScript",
+"path": "res://Antenna.gd"
+}, {
+"base": "Area2D",
 "class": "Bird",
 "language": "GDScript",
 "path": "res://Bird.gd"
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://Spark.gd"
 } ]
 _global_script_class_icons={
+"Antenna": "",
 "Bird": "",
 "Game": "",
 "SignalBar": "",

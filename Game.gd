@@ -20,9 +20,9 @@ var landed_bird_count := 0 #used to check in connection strength update
 
 # Game status
 var connection_strength := 100.0 setget set_connection_strength
-export (int, 0, 1000) var MAX_CONNECTION_STRENGTH := 1000
-export (int, 5, 25) var BIRD_SIGNAL_DECREASE := 10
-export (int, 1, 5) var TIME_SIGNAL_DECREASE := 1
+export (int, 0, 1000) var MAX_CONNECTION_STRENGTH := 100
+export (int, 5, 25) var BIRD_SIGNAL_DECREASE := 8
+export (int, 1, 5) var TIME_SIGNAL_DECREASE := 3
 
 
 func _ready() -> void:
@@ -36,7 +36,7 @@ func start_game() -> void:
 
 func _process(delta: float) -> void:
 	if connection_strength < MAX_CONNECTION_STRENGTH:
-		self.connection_strength += 3 * TIME_SIGNAL_DECREASE if landed_bird_count <= 0 else (-1 *landed_bird_count * TIME_SIGNAL_DECREASE)
+		self.connection_strength += 3 * TIME_SIGNAL_DECREASE * delta if landed_bird_count <= 0 else (-1 *landed_bird_count * TIME_SIGNAL_DECREASE * delta)
 		if connection_strength < 0:
 			check_game()
 

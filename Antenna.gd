@@ -1,16 +1,36 @@
 extends Area2D
 
+class_name Antenna #it should have been Pole
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+signal update_charge(value)
 
+var can_shoot := true
 
-# Called when the node enters the scene tree for the first time.
+var SHOT_POWER := 100
+var MAX_POWER := 300.0
+var RECHARGE := 25.0
+var current_power : float setget set_current_power
+
 func _ready() -> void:
 	pass # Replace with function body.
 
+func _process(delta: float) -> void:
+	if current_power < MAX_POWER:
+		self.current_power += delta * RECHARGE
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func shoot() -> void:
+	#perform emission in game scene (if curved path is added, it will be easier)
+	current_power -= SHOT_POWER
+
+func _on_Antenna_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Sparks"):
+		$AnimationPlayer.play("Explosion")
+		self.current_power = 0
+
+func set_current_power(value) -> void:
+	if value <= 0:
+		can_shoot = false
+	elif value >= MAX_POWER:
+		can_shoot = true
+	current_power = min(value, MAX_POWER)
+	update()
