@@ -47,7 +47,7 @@ layer = -2
 offset = Vector2( 8, 0 )
 transform = Transform2D( 1, 0, 0, 1, 8, 0 )
 follow_viewport_enable = true
-follow_viewport_scale = 0.88
+follow_viewport_scale = 0.86
 
 [node name="Ground2" type="TileMap" parent="Pseudo3d/BackLayer3"]
 scale = Vector2( 3, 3 )
@@ -61,7 +61,7 @@ layer = -2
 offset = Vector2( -10, 0 )
 transform = Transform2D( 1, 0, 0, 1, -10, 0 )
 follow_viewport_enable = true
-follow_viewport_scale = 0.92
+follow_viewport_scale = 0.9
 
 [node name="Ground2" type="TileMap" parent="Pseudo3d/BackLayer2"]
 scale = Vector2( 3, 3 )
@@ -73,7 +73,7 @@ tile_data = PoolIntArray( 720909, 17, 0, 720911, 14, 0, 720913, 14, 0, 720915, 1
 [node name="BackLayer1" type="CanvasLayer" parent="Pseudo3d"]
 layer = -2
 follow_viewport_enable = true
-follow_viewport_scale = 0.96
+follow_viewport_scale = 0.95
 
 [node name="Ground2" type="TileMap" parent="Pseudo3d/BackLayer1"]
 scale = Vector2( 3, 3 )
