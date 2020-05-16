@@ -149,6 +149,7 @@ margin_right = 256.0
 margin_bottom = 29.0
 value = 100.0
 texture_progress = ExtResource( 6 )
+fill_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -348,6 +349,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -256.0
 margin_right = 0.0
+inverted = true
 [connection signal="update_connection_strength" from="." to="GUI/SignalBar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
 [connection signal="timeout" from="RestartTimer" to="." method="start_game"]
