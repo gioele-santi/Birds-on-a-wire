@@ -108,8 +108,6 @@ func check_game() -> void:
 		next_level()
 
 func next_level() -> void:
-	# add visual feed back
-	print("Level: %s" % [level])
 	self.level += 1
 	spawn_timer.wait_time = rand_range(0.2, 1.5) #time according to visual feed back
 	spawn_timer.start() #timer will take care of bird count
@@ -124,7 +122,6 @@ func set_state(value) -> void:
 	if state == value:
 		return
 	state = value
-	
 	
 	match state:
 		State.START:
