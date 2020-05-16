@@ -3,5 +3,5 @@
 [ext_resource path="res://assets/fonts/8-bit Arcade Out.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 40
+size = 43
 font_data = ExtResource( 1 )

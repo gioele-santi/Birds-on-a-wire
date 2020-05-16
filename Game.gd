@@ -5,6 +5,8 @@ class_name Game
 enum State {PLAY, START, GAMEOVER}
 
 signal update_connection_strength(value)
+signal level_changed(level)
+signal points_changed(points)
 
 # Scenes
 export (PackedScene) var Bird_scene
@@ -14,7 +16,8 @@ var state = -1 setget set_state
 
 # Level logic
 onready var spawn_timer := $Spawn_timer
-var level := 1
+var level := 1 setget set_level
+var points := 0 setget set_points
 var alive_bird_count := 0 # use separate count as queue free is completed after game check
 var landed_bird_count := 0 #used to check in connection strength update
 
@@ -93,6 +96,7 @@ func _on_Bird_die() -> void:
 	#connection_strength = min(connection_strength + BIRD_SIGNAL_DECREASE, MAX_CONNECTION_STRENGTH)
 	alive_bird_count -= 1
 	landed_bird_count -= 1
+	self.points += 100
 	check_game() 
 
 func check_game() -> void:
@@ -106,7 +110,7 @@ func check_game() -> void:
 func next_level() -> void:
 	# add visual feed back
 	print("Level: %s" % [level])
-	level += 1
+	self.level += 1
 	spawn_timer.wait_time = rand_range(0.2, 1.5) #time according to visual feed back
 	spawn_timer.start() #timer will take care of bird count
 
@@ -134,7 +138,8 @@ func set_state(value) -> void:
 			$GUI/Start.visible = false
 			$GUI/Gameover.visible = false
 			set_process(true)
-			level = 1
+			self.level = 1
+			self.points = 0
 			landed_bird_count = 0
 			alive_bird_count = 0
 			self.connection_strength = MAX_CONNECTION_STRENGTH
@@ -149,4 +154,11 @@ func set_state(value) -> void:
 			$GUI/Start.visible = false #show with timer
 			$GUI/Gameover.visible = true
 			$RestartTimer.start()
-		
+
+func set_level(value) -> void:
+	level = value
+	emit_signal("level_changed", level)
+
+func set_points(value) -> void:
+	points = value
+	emit_signal("points_changed", points)

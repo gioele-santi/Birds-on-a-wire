@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://assets/tilesets/base_tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://Antenna.tscn" type="PackedScene" id=12]
 [ext_resource path="res://AntennaPowerBar.tscn" type="PackedScene" id=13]
+[ext_resource path="res://LevelControl.gd" type="Script" id=14]
+[ext_resource path="res://PointsControl.gd" type="Script" id=15]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -314,9 +316,9 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -160.0
-margin_top = 20.0
+margin_top = 25.0
 margin_right = 160.0
-margin_bottom = 60.0
+margin_bottom = 65.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -350,22 +352,23 @@ __meta__ = {
 
 [node name="LeftAntennaPowerBar" parent="GUI/HUD" instance=ExtResource( 13 )]
 margin_left = 16.0
-margin_top = 20.0
+margin_top = 25.0
 margin_right = 272.0
-margin_bottom = 60.0
+margin_bottom = 65.0
 
 [node name="RightAntennaPowerBar" parent="GUI/HUD" instance=ExtResource( 13 )]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -272.0
-margin_top = 20.0
+margin_top = 25.0
 margin_right = -16.0
-margin_bottom = 60.0
+margin_bottom = 65.0
 inverted = true
 
 [node name="Level" type="Control" parent="GUI/HUD"]
 margin_right = 272.0
 margin_bottom = 40.0
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -395,8 +398,9 @@ __meta__ = {
 [node name="Points" type="Control" parent="GUI/HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -144.0
-margin_bottom = 40.0
+margin_left = -159.0
+margin_bottom = 44.0
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -424,6 +428,8 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="level_changed" from="." to="GUI/HUD/Level" method="_on_Game_level_changed"]
+[connection signal="points_changed" from="." to="GUI/HUD/Points" method="_on_Game_points_changed"]
 [connection signal="update_connection_strength" from="." to="GUI/HUD/SignalBar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
 [connection signal="timeout" from="RestartTimer" to="." method="start_game"]
