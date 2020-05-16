@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/fonts/8_bit_small_inside.tres" type="DynamicFont" id=10]
 [ext_resource path="res://assets/tilesets/base_tileset.tres" type="TileSet" id=11]
 [ext_resource path="res://Antenna.tscn" type="PackedScene" id=12]
+[ext_resource path="res://AntennaPowerBar.tscn" type="PackedScene" id=13]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -249,6 +250,7 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -298,6 +300,7 @@ margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -337,6 +340,14 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LeftAntennaPowerBar" parent="GUI" instance=ExtResource( 13 )]
+
+[node name="RightAntennaPowerBar" parent="GUI" instance=ExtResource( 13 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -256.0
+margin_right = 0.0
 [connection signal="update_connection_strength" from="." to="GUI/SignalBar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
 [connection signal="timeout" from="RestartTimer" to="." method="start_game"]

@@ -29,7 +29,8 @@ export (int, 1, 5) var TIME_SIGNAL_DECREASE := 3
 func _ready() -> void:
 	randomize()
 	$GUI/Title.visible = true #visible only at start
-	#start_game()
+	$GameLayer/AntennaL.connect("update_charge", $GUI/LeftAntennaPowerBar, "_on_Antenna_update_power")
+	$GameLayer/AntennaR.connect("update_charge", $GUI/RightAntennaPowerBar, "_on_Antenna_update_power")
 	start_game()
 
 func start_game() -> void:

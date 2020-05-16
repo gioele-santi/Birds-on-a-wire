@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://AntennaPowerBar.gd" type="Script" id=1]
+[ext_resource path="res://assets/gui/progress_bar_thin_short.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/progress_bar_thin_short_bg.png" type="Texture" id=3]
+
+[node name="AntennaPowerBar" type="Control"]
+margin_right = 256.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 29.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 28.0
+max_value = 300.0
+value = 300.0
+texture_progress = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
