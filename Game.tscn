@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Bird.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -15,6 +15,13 @@
 [ext_resource path="res://AntennaPowerBar.tscn" type="PackedScene" id=13]
 [ext_resource path="res://LevelControl.gd" type="Script" id=14]
 [ext_resource path="res://PointsControl.gd" type="Script" id=15]
+[ext_resource path="res://assets/two_buttons.png" type="Texture" id=16]
+[ext_resource path="res://assets/juice.png" type="Texture" id=17]
+[ext_resource path="res://assets/fonts/8-bit Arcade In.ttf" type="DynamicFontData" id=18]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 18 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -256,16 +263,9 @@ __meta__ = {
 }
 
 [node name="Title" type="Control" parent="GUI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -302,6 +302,57 @@ custom_colors/font_color = Color( 0.882353, 0.552941, 0.129412, 1 )
 text = "Birds on a Wire"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wildcard1" type="TextureRect" parent="GUI/Title"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -184.0
+margin_right = 126.0
+margin_bottom = -24.0
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/Title/Wildcard1"]
+margin_top = 8.0
+margin_right = 105.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.980392, 0.380392, 0.286275, 1 )
+text = "Two
+Buttons"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wildcard2" type="TextureRect" parent="GUI/Title"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 144.0
+margin_top = -184.0
+margin_right = 254.0
+margin_bottom = -24.0
+texture = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="GUI/Title/Wildcard2"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 99.0
+margin_bottom = 51.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.980392, 0.380392, 0.286275, 1 )
+text = "Juice
+it"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
