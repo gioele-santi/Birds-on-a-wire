@@ -23,7 +23,6 @@ __meta__ = {
 }
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
-modulate = Color( 0.811765, 0.639216, 1, 1 )
 margin_top = 12.0
 margin_right = 256.0
 margin_bottom = 28.0

@@ -29,8 +29,8 @@ export (int, 1, 5) var TIME_SIGNAL_DECREASE := 3
 func _ready() -> void:
 	randomize()
 	$GUI/Title.visible = true #visible only at start
-	$GameLayer/AntennaL.connect("update_charge", $GUI/LeftAntennaPowerBar, "_on_Antenna_update_power")
-	$GameLayer/AntennaR.connect("update_charge", $GUI/RightAntennaPowerBar, "_on_Antenna_update_power")
+	$GameLayer/AntennaL.connect("update_charge", $GUI/HUD/LeftAntennaPowerBar, "_on_Antenna_update_power")
+	$GameLayer/AntennaR.connect("update_charge", $GUI/HUD/RightAntennaPowerBar, "_on_Antenna_update_power")
 	start_game()
 
 func start_game() -> void:
@@ -125,10 +125,10 @@ func set_state(value) -> void:
 	match state:
 		State.START:
 			set_process(false)
-			$GUI/SignalBar.visible = false
+			$GUI/HUD.visible = false
 			$GUI/Start.visible = true
 		State.PLAY:
-			$GUI/SignalBar.visible = true
+			$GUI/HUD.visible = true
 			#add level and tower GUIs
 			$GUI/Title.visible = false
 			$GUI/Start.visible = false
@@ -144,7 +144,7 @@ func set_state(value) -> void:
 			set_process(false)
 			for bird in $Birds.get_children():
 				bird.queue_free()
-			$GUI/SignalBar.visible = false
+			$GUI/HUD.visible = false
 			$GUI/Title.visible = false
 			$GUI/Start.visible = false #show with timer
 			$GUI/Gameover.visible = true

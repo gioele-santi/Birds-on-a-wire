@@ -41,7 +41,6 @@ layer = -10
 follow_viewport_scale = 0.903
 
 [node name="Sky" type="Polygon2D" parent="BackdropLayer"]
-position = Vector2( 0, -3 )
 color = Color( 0.313726, 0.733333, 1, 1 )
 polygon = PoolVector2Array( -10, -10, 1044, -10, 1044, 610, -10, 610 )
 
@@ -116,43 +115,6 @@ one_shot = true
 
 [node name="GUI" type="CanvasLayer" parent="."]
 layer = 15
-
-[node name="SignalBar" type="Control" parent="GUI"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -160.0
-margin_right = 160.0
-margin_bottom = 40.0
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="GUI/SignalBar"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -256.0
-margin_right = 256.0
-margin_bottom = 40.0
-texture = ExtResource( 5 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="TextureProgress" parent="GUI/SignalBar"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -256.0
-margin_top = 12.0
-margin_right = 256.0
-margin_bottom = 29.0
-value = 100.0
-texture_progress = ExtResource( 6 )
-fill_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Gameover" type="Control" parent="GUI"]
 visible = false
@@ -342,14 +304,123 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftAntennaPowerBar" parent="GUI" instance=ExtResource( 13 )]
+[node name="HUD" type="Control" parent="GUI"]
+anchor_right = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="RightAntennaPowerBar" parent="GUI" instance=ExtResource( 13 )]
+[node name="SignalBar" type="Control" parent="GUI/HUD"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -160.0
+margin_top = 20.0
+margin_right = 160.0
+margin_bottom = 60.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="GUI/HUD/SignalBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="GUI/HUD/SignalBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = 12.0
+margin_right = 256.0
+margin_bottom = 29.0
+value = 100.0
+texture_progress = ExtResource( 6 )
+fill_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftAntennaPowerBar" parent="GUI/HUD" instance=ExtResource( 13 )]
+margin_left = 16.0
+margin_top = 20.0
+margin_right = 272.0
+margin_bottom = 60.0
+
+[node name="RightAntennaPowerBar" parent="GUI/HUD" instance=ExtResource( 13 )]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -256.0
-margin_right = 0.0
+margin_left = -272.0
+margin_top = 20.0
+margin_right = -16.0
+margin_bottom = 60.0
 inverted = true
-[connection signal="update_connection_strength" from="." to="GUI/SignalBar" method="_on_Game_update_connection_strength"]
+
+[node name="Level" type="Control" parent="GUI/HUD"]
+margin_right = 272.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GUI/HUD/Level"]
+margin_left = 31.0
+margin_right = 157.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.882353, 0.552941, 0.129412, 1 )
+text = "Level 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Drop" type="Label" parent="GUI/HUD/Level"]
+margin_left = 31.0
+margin_right = 157.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.568627, 0.509804, 0.509804, 1 )
+text = "Level 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Control" parent="GUI/HUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -144.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="GUI/HUD/Points"]
+margin_left = -48.0
+margin_right = 112.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0.882353, 0.552941, 0.129412, 1 )
+text = "00000000"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Drop" type="Label" parent="GUI/HUD/Points"]
+margin_left = -48.0
+margin_right = 112.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.568627, 0.509804, 0.509804, 1 )
+text = "00000000"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="update_connection_strength" from="." to="GUI/HUD/SignalBar" method="_on_Game_update_connection_strength"]
 [connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
 [connection signal="timeout" from="RestartTimer" to="." method="start_game"]
