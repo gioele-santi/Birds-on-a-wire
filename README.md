@@ -1,5 +1,5 @@
-# Godot Wild Jam 21
-My entry for 21 st Godot Wild Jam - Theme **connection** + *2 buttons* wild card (I hope also juicing, but we will see)
+# Birds on a wire
+My entry for **21 st Godot Wild Jam** - Theme **connection** + *2 buttons* and *juice it* wild card were used.
 
 ## Synopsis
 
@@ -7,12 +7,13 @@ Some birds are flying around and they may interrupt an important **connection** 
 Your task is to protect the precious wire from all those birds. All that weight may break it.
 
 ## Controls
-Only 2 buttons: Q and W on your keyboard. Shoot from left or right.
+Only 2 buttons: 
+- Q and W on your keyboard;
+- alternatively use left and right arrows.
+Shoot from left or right.
 
 ## Attributions
-
-Game developed by Gioele Santi. All code and other stuff made by made except the ones listed below:
-
+All code and other stuff made by me except the ones listed below:
 
 - Bird sprite: [LPC Birds by bluecarrot16](https://opengameart.org/content/lpc-birds)
 - Shock sprites: [Lightning shock spell by Clint Bellanger](https://opengameart.org/content/lightning-shock-spell)
