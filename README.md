@@ -20,4 +20,6 @@ Game developed by Gioele Santi. All code and other stuff made by made except the
 - Explosion: [Explosion effect by LIXING](https://opengameart.org/content/explosion-effect-pixel-art)
 - Fonts: [8-bit Arcade by Damien Gosset](https://www.dafont.com/it/8-bit-arcade.font?l[]=10&l[]=1)
 
+Music recorded on Garageband using [YMCK Magical 8bit Plug 1 & 2](http://www.ymck.net/en/download/magical8bitplug/)
+
 Sounds were generated using [Bfxr](https://www.bfxr.net/) (sorry if they are similar to other you may know).

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BirdsOnWire_intro.ogg-72b0f5c9b76e8e15305912bc5c2420a5.oggstr"
+
+[deps]
+
+source_file="res://assets/music/BirdsOnWire_intro.ogg"
+dest_files=[ "res://.import/BirdsOnWire_intro.ogg-72b0f5c9b76e8e15305912bc5c2420a5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=1.95
