@@ -46,7 +46,7 @@ func next_stream() -> AudioStreamPlayer:
 
 func current_stream_playback_switch() -> float:
 	if state == State.INTRO:
-		return 3.88
+		return 3.85
 	elif state == State.GAME:
 		return 0.0 #23.58
 	else:
