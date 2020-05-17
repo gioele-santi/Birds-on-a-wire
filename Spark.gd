@@ -1,7 +1,7 @@
 extends Area2D
 class_name Spark
 
-signal Explosion(position)
+#signal Explosion(position)
 
 var direction := Vector2.ZERO #or -1 according to pressed button
 export (float) var speed = 400.0
@@ -40,5 +40,5 @@ func _on_Spark_area_entered(area: Area2D) -> void:
 		
 
 
-func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:
 	queue_free()

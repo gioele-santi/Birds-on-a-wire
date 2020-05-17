@@ -295,14 +295,14 @@ volume_db = -13.149
 
 [node name="Bird_blop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-volume_db = -8.368
+volume_db = -3.319
 
 [node name="Explosion" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource( 6 )
 
 [node name="Bump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+volume_db = -11.107
 [connection signal="area_entered" from="." to="." method="_on_Bird_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

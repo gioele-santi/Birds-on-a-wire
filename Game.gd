@@ -58,6 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func shot_spark(direction: int) -> void:
 	var antenna : Antenna = $GameLayer/AntennaL if direction > 0 else $GameLayer/AntennaR 
 	if not antenna.can_shoot:
+		$DisabledSfx.play()
 		return
 	antenna.shoot() #discharge
 	var new_spark : Spark = Spark_scene.instance()
@@ -135,6 +136,7 @@ func set_state(value) -> void:
 			$GUI/Start.visible = false
 			$GUI/Gameover.visible = false
 			set_process(true)
+			$BGMusic.next()
 			self.level = 1
 			self.points = 0
 			landed_bird_count = 0
@@ -143,6 +145,7 @@ func set_state(value) -> void:
 			spawn_timer.wait_time = rand_range(0.2, 1.5)
 			spawn_timer.start()
 		State.GAMEOVER:
+			$BGMusic.next()
 			set_process(false)
 			for bird in $Birds.get_children():
 				bird.queue_free()
