@@ -8,6 +8,8 @@ onready var _intro : AudioStreamPlayer = $StartBG
 onready var _game : AudioStreamPlayer = $GameBG
 onready var _gameover : AudioStreamPlayer = $GameoverBG
 
+var _previous_playback_position : float = -1.0
+
 func _ready() -> void:
 	state = State.INTRO
 	_intro.play()
@@ -20,13 +22,15 @@ func _process(_delta: float) -> void:
 		return
 	if _required_next:
 		var stream := current_stream()
-		var playback := stream.get_playback_position()
-		print(playback)
-		if playback > current_stream_playback_switch():
+		var playback_position := stream.get_playback_position()
+		if playback_position < _previous_playback_position:
 			stream.stop()
 			next_stream().play()
 			state += 1
 			_required_next = false
+			_previous_playback_position = -1.0
+		else:
+			_previous_playback_position = playback_position
 
 func current_stream() -> AudioStreamPlayer:
 	if state == State.INTRO:
@@ -43,15 +47,6 @@ func next_stream() -> AudioStreamPlayer:
 		return _gameover
 	else:
 		return _intro
-
-func current_stream_playback_switch() -> float:
-	if state == State.INTRO:
-		return 3.85
-	elif state == State.GAME:
-		return 0.0 #23.58
-	else:
-		return 4.0
-
 
 func _on_GameoverBG_finished() -> void:
 	state = State.INTRO
